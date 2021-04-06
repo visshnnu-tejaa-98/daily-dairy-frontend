@@ -2,20 +2,23 @@ import React, { useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import About from './components/About';
+import AddPost from './components/AddPost';
 import Contact from './components/Contact';
 import Forgot from './components/Forgot';
 import Home from './components/Home';
 import Login from './components/Login';
+import MonthSearch from './components/MonthSearch';
 import Navbar from './components/Navbar.';
 import Register from './components/Register';
 import Reset from './components/Reset';
+import SearchPost from './components/SearchPost';
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Navbar />
 			<Switch>
-				<Route path='/home'>
+				<Route path='/home' exact>
 					<Home />
 				</Route>
 				<Route path='/about' exact>
@@ -35,6 +38,15 @@ function App() {
 				</Route>
 				<Route path='/reset' exact>
 					<Reset />
+				</Route>
+				<Route path='/addPost' exact>
+					<AddPost />
+				</Route>
+				<Route path='/searchPost' exact>
+					<SearchPost />
+				</Route>
+				<Route path='/month' exact>
+					<MonthSearch />
 				</Route>
 			</Switch>
 		</BrowserRouter>

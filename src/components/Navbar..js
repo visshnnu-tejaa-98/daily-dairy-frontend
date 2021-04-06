@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FRONTEND_ENDPOINT } from './endpoint';
 const Navbar = () => {
 	const [home, setHome] = useState(false);
+	const [github, setGithub] = useState(false);
 	const [about, setAbout] = useState(false);
 	const [contact, setContact] = useState(false);
 	const [login, setLogin] = useState(false);
+	const [isToken, setIsToken] = useState(false);
 
 	useEffect(() => {
 		let M = window.M;
@@ -13,7 +16,24 @@ const Navbar = () => {
 			var elems = document.querySelectorAll('.sidenav');
 			var instances = M.Sidenav.init(elems, {});
 		});
-	}, []);
+
+		const tokenHandler = () => {
+			const token = localStorage.getItem('Daily Dairy');
+			if (token) {
+				setIsToken(true);
+			} else {
+				setIsToken(false);
+			}
+		};
+		tokenHandler();
+
+		if (isToken) {
+			setLogin(true);
+			console.log(isToken);
+		} else {
+			setLogin(false);
+		}
+	}, [isToken, login]);
 	const handleHome = () => {
 		setHome(true);
 		setAbout(false);
@@ -41,6 +61,10 @@ const Navbar = () => {
 	const handleLogout = () => {
 		localStorage.removeItem('Daily Dairy');
 		setLogin(false);
+		window.location.href = `${FRONTEND_ENDPOINT}/home`;
+	};
+	const handleGithub = () => {
+		window.location.href = 'https://github.com/visshnnu-tejaa-98/daily-dairy-frontend';
 	};
 	return (
 		<div>
@@ -56,6 +80,11 @@ const Navbar = () => {
 						<li>
 							<Link to='/home' className={home ? 'bold' : ''} onClick={handleHome}>
 								Home
+							</Link>
+						</li>
+						<li>
+							<Link to='/home' className={github ? 'bold' : ''} onClick={handleGithub}>
+								Github
 							</Link>
 						</li>
 						<li>
@@ -80,7 +109,7 @@ const Navbar = () => {
 						<li>
 							<Link
 								to='/login'
-								className={!login ? 'hide' : 'waves-effect waves-light btn pink lighten-1'}
+								className={!isToken ? 'hide' : 'waves-effect waves-light btn pink lighten-1'}
 								onClick={handleLogout}
 							>
 								Logout
@@ -93,6 +122,11 @@ const Navbar = () => {
 			<ul className='sidenav' id='mobile-demo'>
 				<li>
 					<Link to='/home'>Home</Link>
+				</li>
+				<li>
+					<Link to='' onClick={handleGithub}>
+						Github
+					</Link>
 				</li>
 				<li>
 					<Link to='/about'>About</Link>
