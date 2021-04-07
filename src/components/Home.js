@@ -5,6 +5,8 @@ import Login from './Login';
 import Footer from './Footer';
 import StartHere from './StartHere';
 import Search from './Search';
+import About from './About';
+import Contact from './Contact';
 
 const Home = () => {
 	const [isToken, setIsToken] = useState(false);
@@ -137,6 +139,18 @@ const Home = () => {
 					</article>
 				</div>
 			</section>
+
+			{!isToken && (
+				<section className='about'>
+					<About />
+				</section>
+			)}
+			{!isToken && (
+				<section className='contact'>
+					<Contact />
+				</section>
+			)}
+
 			<footer>
 				<Footer />
 			</footer>

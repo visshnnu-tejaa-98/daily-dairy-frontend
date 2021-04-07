@@ -34,27 +34,34 @@ const SearchPost = () => {
 		) {
 			const M = window.M;
 			M.toast({ html: "Input date should not be greater than today's date" });
-		}
-		setLoading(true);
-		const month = months[Number(date.split('-')[1].split('')[1]) - 1];
-		const searchDate = date.split('-')[2];
-		const year = date.split('-')[0];
-		const fullDate = `${month} ${searchDate} ${year}`;
-		// console.log(fullDate);
-		const data = { fullDate };
-		setInputDate(fullDate);
-		console.log(data);
+		} else {
+			setLoading(true);
+			const month = months[Number(date.split('-')[1].split('')[1]) - 1];
+			const searchDate = date.split('-')[2];
+			const year = date.split('-')[0];
+			const fullDate = `${month} ${searchDate} ${year}`;
+			// console.log(fullDate);
+			const data = { fullDate };
+			setInputDate(fullDate);
+			console.log(data);
 
-		const req = await fetch(`${BACKEND_ENDPOINT}/posts/${fullDate}`, {
-			method: 'GET',
-			headers: {
-				authorization: localStorage.getItem('Daily Dairy'),
-			},
-		});
-		const res = await req.json();
-		setPost(res);
-		setLoading(false);
-		console.log(res);
+			const req = await fetch(`${BACKEND_ENDPOINT}/posts/${fullDate}`, {
+				method: 'GET',
+				headers: {
+					authorization: localStorage.getItem('Daily Dairy'),
+				},
+			});
+			const res = await req.json();
+			console.log(res);
+			if (res.message) {
+				const M = window.M;
+				M.toast({ html: res.message });
+				window.location.href = `${FRONTEND_ENDPOINT}/searchPost`;
+			} else {
+				setPost(res);
+				setLoading(false);
+			}
+		}
 	};
 	return (
 		<div className='search-post container '>
@@ -76,14 +83,14 @@ const SearchPost = () => {
 					</div>
 					<div className='row '>
 						<div className='col s10 l10 offset-l1 offset-s1'>
-							<div class='editor margin-bottom-5 white padding-5-all'>
+							<div className='editor margin-bottom-5 white padding-5-all'>
 								<div>{HtmlParser(onePost.post.post)}</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			)}
-			{isLoading && <div class='loader '>Loading...</div>}
+			{isLoading && <div className='loader '>Loading...</div>}
 		</div>
 	);
 };

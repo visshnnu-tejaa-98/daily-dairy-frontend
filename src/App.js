@@ -12,6 +12,7 @@ import Navbar from './components/Navbar.';
 import Register from './components/Register';
 import Reset from './components/Reset';
 import SearchPost from './components/SearchPost';
+import SinglePost from './components/SinglePost';
 
 function App() {
 	return (
@@ -24,9 +25,9 @@ function App() {
 				<Route path='/about' exact>
 					<About />
 				</Route>
-				<Route path='/contact' exact>
+				{/* <Route path='/contact' exact>
 					<Contact />
-				</Route>
+				</Route> */}
 				<Route path='/login' exact>
 					<Login />
 				</Route>
@@ -47,6 +48,9 @@ function App() {
 				</Route>
 				<Route path='/month' exact>
 					<MonthSearch />
+				</Route>
+				<Route path='/posts/:date' exact>
+					<SinglePost />
 				</Route>
 			</Switch>
 		</BrowserRouter>

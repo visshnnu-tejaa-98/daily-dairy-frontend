@@ -99,6 +99,9 @@ General
 .padding-y-5 {
 	padding: 5% 0;
 }
+.padding-y-5 {
+	padding: 3% 0;
+}
 
 /* 
 *******************
@@ -184,4 +187,8 @@ bannar
 .text-btn {
 	line-height: 1.5;
 	font-size: 1.3rem;
+}
+.about-p {
+	font-size: 1.3rem;
+	line-height: 1.5;
 }

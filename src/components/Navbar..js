@@ -87,7 +87,7 @@ const Navbar = () => {
 								Github
 							</Link>
 						</li>
-						<li>
+						{/* <li>
 							<Link to='/about' className={about ? 'bold' : ''} onClick={handleAbout}>
 								About
 							</Link>
@@ -96,7 +96,7 @@ const Navbar = () => {
 							<Link to='/contact' className={contact ? 'bold' : ''} onClick={handleContact}>
 								Contact
 							</Link>
-						</li>
+						</li> */}
 						<li>
 							<Link
 								to='/login'
