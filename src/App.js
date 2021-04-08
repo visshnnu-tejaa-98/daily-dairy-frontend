@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import About from './components/About';
 import AddPost from './components/AddPost';
-import Contact from './components/Contact';
 import EditProfile from './components/EditProfile';
+import Error404 from './components/Error404';
 import Forgot from './components/Forgot';
 import Home from './components/Home';
 import Login from './components/Login';
@@ -21,6 +21,9 @@ function App() {
 		<BrowserRouter>
 			<Navbar />
 			<Switch>
+				<Route path='/' exact>
+					<Home />
+				</Route>
 				<Route path='/home' exact>
 					<Home />
 				</Route>
@@ -59,6 +62,9 @@ function App() {
 				</Route>
 				<Route path='/posts/:date'>
 					<SinglePost />
+				</Route>
+				<Route path='*'>
+					<Error404 />
 				</Route>
 			</Switch>
 		</BrowserRouter>

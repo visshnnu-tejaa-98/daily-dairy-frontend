@@ -87,6 +87,9 @@ General
 .margin-bottom-5 {
 	margin-bottom: 5%;
 }
+.margin-bottom-3 {
+	margin-bottom: 3%;
+}
 .progress {
 	margin-top: 0;
 }
@@ -204,4 +207,7 @@ bannar
 .profile-ans {
 	font-weight: 400;
 	color: black;
+}
+.error-img {
+	height: 500px;
 }

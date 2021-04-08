@@ -130,6 +130,21 @@ const Navbar = () => {
 					</Link>
 				</li>
 				<li>
+					<Link to='/addPost' className={!isToken ? 'hide' : ''}>
+						Add Memory
+					</Link>
+				</li>
+				<li>
+					<Link to='/searchPost' className={!isToken ? 'hide' : ''}>
+						Search by Date
+					</Link>
+				</li>
+				<li>
+					<Link to='/month' className={!isToken ? 'hide' : ''}>
+						Search by Month
+					</Link>
+				</li>
+				<li>
 					<Link to='/login' className={!isToken ? 'hide' : ''} onClick={handleLogout}>
 						Logout
 					</Link>

@@ -77,8 +77,8 @@ const SearchPost = () => {
 				</button>
 			</div>
 			{onePost && (
-				<div className='fulldiv z-depth-1'>
-					<div className='date margin-5 '>
+				<div className='fulldiv z-depth-1 margin-bottom-5'>
+					<div className='date margin-5  '>
 						<p className='  center pink-text text-lighten-1'>{inputDate}</p>
 					</div>
 					<div className='row '>

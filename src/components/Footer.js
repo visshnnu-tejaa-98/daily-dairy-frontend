@@ -3,6 +3,12 @@ const Footer = () => {
 	const handleGithub = () => {
 		window.location.href = 'https://github.com/visshnnu-tejaa-98/daily-dairy-frontend';
 	};
+	const handleInstagram = () => {
+		window.location.href = 'https://www.instagram.com';
+	};
+	const handleTwitter = () => {
+		window.location.href = 'https://www.twitter.com';
+	};
 	return (
 		<div className='footer'>
 			<footer className='page-footer blue-grey darken-3 '>
@@ -32,13 +38,13 @@ const Footer = () => {
 									</Link>
 								</li>
 								<li>
-									<Link className='grey-text text-lighten-3' to='/about'>
-										About
+									<Link className='grey-text text-lighten-3' onClick={handleInstagram}>
+										Instagram
 									</Link>
 								</li>
 								<li>
-									<Link className='grey-text text-lighten-3' to='/contact'>
-										Contact
+									<Link className='grey-text text-lighten-3' onClick={handleTwitter}>
+										Twitter
 									</Link>
 								</li>
 							</ul>
