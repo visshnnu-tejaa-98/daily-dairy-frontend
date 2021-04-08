@@ -1,7 +1,9 @@
 # Daily Dairy
 
 This is An Application to store write the dairy daily online ( simply this is an online dairy writing platform)
+
 you can see the application preview : https://daily-dairy.netlify.app/
+
 you can see the backend code here for this application : https://github.com/visshnnu-tejaa-98/daily-dairy-backend
 
 
