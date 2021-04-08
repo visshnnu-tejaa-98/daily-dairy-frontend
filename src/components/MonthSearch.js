@@ -111,7 +111,10 @@ const MonthSearch = () => {
 									<tr>
 										<td>{post.date}</td>
 										<td>
-											<Link className='waves-effect waves-light btn' to={`/posts/${post.date}`}>
+											<Link
+												className='waves-effect waves-light btn indigo'
+												to={`/posts/${post.date}`}
+											>
 												<i className='material-icons right'>send</i>See
 											</Link>
 										</td>

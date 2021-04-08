@@ -4,11 +4,13 @@ import './App.css';
 import About from './components/About';
 import AddPost from './components/AddPost';
 import Contact from './components/Contact';
+import EditProfile from './components/EditProfile';
 import Forgot from './components/Forgot';
 import Home from './components/Home';
 import Login from './components/Login';
 import MonthSearch from './components/MonthSearch';
 import Navbar from './components/Navbar.';
+import Profile from './components/Profile';
 import Register from './components/Register';
 import Reset from './components/Reset';
 import SearchPost from './components/SearchPost';
@@ -49,7 +51,13 @@ function App() {
 				<Route path='/month' exact>
 					<MonthSearch />
 				</Route>
-				<Route path='/posts/:date' exact>
+				<Route path='/profile'>
+					<Profile />
+				</Route>
+				<Route path='/editProfile'>
+					<EditProfile />
+				</Route>
+				<Route path='/posts/:date'>
 					<SinglePost />
 				</Route>
 			</Switch>

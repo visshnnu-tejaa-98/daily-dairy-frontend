@@ -192,3 +192,16 @@ bannar
 	font-size: 1.3rem;
 	line-height: 1.5;
 }
+.avatar {
+	width: 300px;
+	height: 300px;
+}
+.profile-details {
+	font-size: 1.2rem;
+	color: #4b0082;
+	font-weight: 700;
+}
+.profile-ans {
+	font-weight: 400;
+	color: black;
+}

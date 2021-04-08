@@ -1,8 +1,8 @@
+import avatar from '../images/avatar.png';
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import avatar from '../images/avatar.png';
 import { FRONTEND_ENDPOINT, BACKEND_ENDPOINT } from './endpoint';
-const Register = () => {
+const EditProfile = () => {
 	const [fname, setFname] = useState('');
 	const [lname, setLname] = useState('');
 	const [age, setAge] = useState('');
@@ -19,7 +19,7 @@ const Register = () => {
 	const [password, setPassword] = useState('');
 	const [profile, setProfile] = useState(avatar);
 	const [isLoading, setIsLoading] = useState(false);
-
+	// const [editUser, etEditUser] = useState(null);
 	useEffect(() => {
 		const M = window.M;
 		M.AutoInit();
@@ -27,14 +27,35 @@ const Register = () => {
 			var elems = document.querySelectorAll('.datepicker');
 			var instances = M.Datepicker.init(elems, {});
 		});
-	}, []);
+		const getData = async () => {
+			const req = await fetch(`${BACKEND_ENDPOINT}/profile`, {
+				headers: {
+					authorization: localStorage.getItem('Daily Dairy'),
+				},
+			});
+			const res = await req.json();
 
-	const postData = async (e) => {
+			setFname(res.fname);
+			setLname(res.lname);
+			setAge(res.age);
+			setEmail(res.email);
+			setPhone(res.phone);
+			setMobile(res.mobile);
+			setHeight(res.height);
+			setWeight(res.weight);
+			setBlood(res.blood);
+			setAddress1(res.address1);
+			setAddress2(res.address2);
+			setState(res.state);
+			setCountry(res.country);
+		};
+		getData();
+	}, []);
+	const editData = async (e) => {
 		if (
 			!fname ||
 			!lname ||
 			!age ||
-			!email ||
 			!phone ||
 			!mobile ||
 			!height ||
@@ -42,9 +63,7 @@ const Register = () => {
 			!blood ||
 			!address1 ||
 			!state ||
-			!country ||
-			!password ||
-			!profile
+			!country
 		) {
 			e.preventDefault();
 			alert('Input Should not be empty');
@@ -54,7 +73,6 @@ const Register = () => {
 				fname,
 				lname,
 				age,
-				email,
 				phone,
 				mobile,
 				height,
@@ -64,22 +82,22 @@ const Register = () => {
 				address2,
 				state,
 				country,
-				password,
 			};
 			console.log(data);
-			const req = await fetch(`${BACKEND_ENDPOINT}/register`, {
-				method: 'POST',
+			const req = await fetch(`${BACKEND_ENDPOINT}/profile`, {
+				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
+					authorization: localStorage.getItem('Daily Dairy'),
 				},
 				body: JSON.stringify(data),
 			});
 			const res = await req.json();
 			console.log(res);
-			if (res.message === 'User Created') {
+			if (res.message === 'Profile Updated') {
 				const M = window.M;
 				M.toast({ html: res.message });
-				window.location.href = `${FRONTEND_ENDPOINT}/login`;
+				window.location.href = `${FRONTEND_ENDPOINT}/profile`;
 				setIsLoading(false);
 			} else {
 				const M = window.M;
@@ -87,14 +105,13 @@ const Register = () => {
 			}
 		}
 	};
-
 	return (
 		<div className='container'>
 			<h4 className='cursive center pink-text text-lighten-1 '>
 				Write a diary, imagining that you are trying to make an old person jealous
 			</h4>
 			<h5 className='center cursive indigo-text '>
-				Register Here <i className='material-icons  '></i>
+				Edit Profile <i className='material-icons  '></i>
 			</h5>
 			<div className='row margin-5 '>
 				<div className='col s12 l6 center'>
@@ -102,7 +119,7 @@ const Register = () => {
 				</div>
 				<div className='col s12 l6 center formSize'>
 					<div className='row'>
-						<div className='col l6 s12'>
+						<div className='col l12 s12'>
 							<div className='input-field '>
 								<i className='material-icons prefix '>account_circle</i>
 								<input
@@ -116,7 +133,7 @@ const Register = () => {
 								/>
 							</div>
 						</div>
-						<div className='col l6 s12'>
+						<div className='col l12 s12'>
 							<div className='input-field '>
 								<i className='material-icons prefix '>account_circle</i>
 								<input
@@ -132,7 +149,7 @@ const Register = () => {
 						</div>
 					</div>
 					<div className='row'>
-						<div className='col l6 s12'>
+						<div className='col l12 s12'>
 							<div className='input-field '>
 								<i className='material-icons prefix '>query_builder</i>
 								<input
@@ -143,35 +160,6 @@ const Register = () => {
 									className='validate '
 									placeholder='Age'
 									required
-								/>
-							</div>
-						</div>
-						<div className='col l6 s12'>
-							<div className='input-field '>
-								<i className='material-icons prefix '>email</i>
-								<input
-									id='email'
-									type='text'
-									className='validate '
-									placeholder='Email'
-									value={email}
-									onChange={(e) => setEmail(e.target.value)}
-									required
-								/>
-							</div>
-						</div>
-					</div>
-					<div className='row'>
-						<div className='col l6 s12'>
-							<div className='input-field '>
-								<i className='material-icons prefix '>password</i>
-								<input
-									id='password'
-									value={password}
-									onChange={(e) => setPassword(e.target.value)}
-									type='password'
-									className='validate '
-									placeholder='Password'
 								/>
 							</div>
 						</div>
@@ -319,12 +307,12 @@ const Register = () => {
 						? ' waves-effect waves-light btn indigo margin-bottom-5 disabled'
 						: 'waves-effect waves-light btn indigo margin-bottom-5'
 				}
-				onClick={postData}
+				onClick={editData}
 			>
-				{isLoading ? 'Registering...' : 'Register'}
+				{isLoading ? 'Loading...' : 'Edit '}
 			</Link>
 		</div>
 	);
 };
 
-export default Register;
+export default EditProfile;

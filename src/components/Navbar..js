@@ -4,8 +4,7 @@ import { FRONTEND_ENDPOINT } from './endpoint';
 const Navbar = () => {
 	const [home, setHome] = useState(false);
 	const [github, setGithub] = useState(false);
-	const [about, setAbout] = useState(false);
-	const [contact, setContact] = useState(false);
+	const [profile, setProfile] = useState(false);
 	const [login, setLogin] = useState(false);
 	const [isToken, setIsToken] = useState(false);
 
@@ -36,27 +35,23 @@ const Navbar = () => {
 	}, [isToken, login]);
 	const handleHome = () => {
 		setHome(true);
-		setAbout(false);
-		setContact(false);
 		setLogin(false);
+		setProfile(false);
 	};
-	const handleAbout = () => {
+	const handleProfile = () => {
 		setHome(false);
-		setAbout(true);
-		setContact(false);
 		setLogin(false);
+		setProfile(true);
 	};
 	const handleContact = () => {
 		setHome(false);
-		setAbout(false);
-		setContact(true);
 		setLogin(false);
+		setProfile(false);
 	};
 	const handleLogin = () => {
 		setHome(false);
-		setAbout(false);
-		setContact(false);
 		setLogin(true);
+		setProfile(false);
 	};
 	const handleLogout = () => {
 		localStorage.removeItem('Daily Dairy');
@@ -87,16 +82,16 @@ const Navbar = () => {
 								Github
 							</Link>
 						</li>
-						{/* <li>
-							<Link to='/about' className={about ? 'bold' : ''} onClick={handleAbout}>
-								About
+						<li>
+							<Link
+								to='/profile'
+								className={!isToken ? 'hide' : profile ? 'bold' : ''}
+								onClick={handleProfile}
+							>
+								My Profile
 							</Link>
 						</li>
-						<li>
-							<Link to='/contact' className={contact ? 'bold' : ''} onClick={handleContact}>
-								Contact
-							</Link>
-						</li> */}
+
 						<li>
 							<Link
 								to='/login'
@@ -106,6 +101,7 @@ const Navbar = () => {
 								<i className='material-icons right'>login</i>Login
 							</Link>
 						</li>
+
 						<li>
 							<Link
 								to='/login'
@@ -129,13 +125,20 @@ const Navbar = () => {
 					</Link>
 				</li>
 				<li>
-					<Link to='/about'>About</Link>
+					<Link to='/profile' className={!isToken ? 'hide' : ''} onClick={handleProfile}>
+						My Profile
+					</Link>
 				</li>
 				<li>
-					<Link to='/contact'>Contact</Link>
+					<Link to='/login' className={!isToken ? 'hide' : ''} onClick={handleLogout}>
+						Logout
+					</Link>
 				</li>
+
 				<li>
-					<Link to='/login'>Login</Link>
+					<Link to='/login' className={login ? 'hide' : ''} onClick={handleLogin}>
+						<i className='material-icons right'>login</i>Login
+					</Link>
 				</li>
 			</ul>
 		</div>
